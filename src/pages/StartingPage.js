@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import StartingButtonComponent from "../compontents/StartingButtonComponent";
 import { IoBeerSharp } from "react-icons/io5";
+import QuizPage from "./QuizPage";
 
 const Wrapper = styled.div`
   display: ${(props) => (props.welcome === true ? "flex" : "none")};
   width: 100%;
-  background-color: #fff;
+  height: 100vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -14,9 +15,13 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
   background-color: #fff;
-  margin-top: 18.6rem;
-  margin-bottom: 3rem;
+  padding-top: 6.5rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
   text-align: center;
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 1px 1.5px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s cubic-bezier(0.15, 0.4, 0.15, 0.5);
 `;
 
 const Intro = styled.div`
@@ -31,7 +36,7 @@ const Title = styled.div`
   font-size: 3.5rem;
   font-weight: 400;
   padding-top: 70px;
-  margin-bottom: 8.4rem;
+  margin-bottom: 7.5rem;
   color: #232321;
 `;
 
@@ -42,14 +47,17 @@ const Footer = styled.div`
   text-align: center;
   margin-top: 8rem;
   color: #a7a7a7;
+  padding-bottom: 4rem;
 `;
 
+/** StartingPage Component */
 const StartingPage = () => {
   const [welcome, setWelcome] = useState(true);
   const [quizTime, setQuizTime] = useState(false);
 
   const onClickStartBtn = () => {
     setWelcome(false);
+    setQuizTime(true);
   };
 
   return (
@@ -65,12 +73,12 @@ const StartingPage = () => {
           <StartingButtonComponent
             type={true}
             text={"시작하기"}
-            onClickStartBtn={onClickStartBtn}
+            onclick={onClickStartBtn}
           />
           <Footer>made by heeChang</Footer>
         </Container>
       </Wrapper>
-      {/*<QuizPage welcome={quizTime} /> */}
+      <QuizPage welcome={quizTime} />
     </>
   );
 };

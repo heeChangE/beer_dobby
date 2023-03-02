@@ -21,6 +21,7 @@
 }
 
 */
+
 @font-face {
   font-family: "Jalnan";
   src: url("./fonts/JalnanOTF.otf") format("opentype");
@@ -31,6 +32,13 @@
 @font-face {
   font-family: "Oswald";
   src: url("./fonts/Oswald-VariableFont_wght.ttf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Reko";
+  src: url("./fonts/RECIPEKOREA\ 레코체\ FONT.TTF") format("opentype");
   font-style: normal;
   font-weight: 400;
 }
@@ -46,9 +54,5 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  background-color: #f6f6f6;
 }

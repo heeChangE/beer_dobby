@@ -4,9 +4,9 @@ import styled from "styled-components";
 const Button = styled.div`
     width: 29.2rem;
     height: 7rem;
-    border-radius: 1.5rem;
-    background-color: ${props => [props.type === true ? '#bbc4ef' : props.theme.white]};
-    // type에 따라 초록 버튼인지 회색 테두리 버튼인지 결정하도록 하는 코드
+    border-radius: 0.5rem;
+    background-color: ${props => [props.type === true ? '#ffc72c' : props.theme.white]};
+    // type에 따라 맥주 색상 버튼인지 회색 테두리 버튼인지 결정하도록 하는 코드 #bbc4ef #fdd801 #ffc72c
     cursor: pointer;
     margin: 1.5rem;
     display: inline-flex;
