@@ -5,10 +5,10 @@ import contents from "./contents/questions";
 import ButtonComponent from "../compontents/ButtonComponent";
 import ProgressBar from "../compontents/progressBar";
 import Parser from "html-react-parser";
-import { Link, Navigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Wrapper = styled.div`
-  display: ${props => props.welcome === true ? "flex" : "none"};
+  display: ${(props) => (props.welcome === true ? "flex" : "none")};
   width: 100%;
   height: 100vh;
   background-color: #f6f6f6;
@@ -29,7 +29,7 @@ const Container = styled.div`
 `;
 const Title = styled.div`
   font-family: "Jalnan";
-  font-size: 2.5rem;
+  font-size: 2.9rem;
   text-align: center;
   color: #ffc72c;
   margin-top: 1.9rem;
@@ -37,17 +37,17 @@ const Title = styled.div`
 `;
 
 const Footer = styled.div`
-  font-family: 'Jalnan';
+  font-family: "Reko";
   font-size: 1.4rem;
-  font-weight: 400;
+  font-weight: 200;
   text-align: center;
-  margin-top: 8.9rem;
+  margin-top: 5.5rem;
   color: #a7a7a7;
 `;
 
 const Msg = styled.div`
   font-family: "Jalnan";
-  font-size: 1.4rem;
+  font-size: 2.0rem;
   font-weight: 400;
   text-align: center;
   color: #a7a7a7;
@@ -64,8 +64,8 @@ const Text = styled.div`
   line-height: 30px;
 `;
 
-/** QuizPage component */
-const QuizPage = ({welcome}) => {
+/** QuizPage Function */
+const QuizPage = ({ welcome }) => {
   const [questionNumber, setQuestionNumber] = useState(0);
   const [loading, setLoading] = useState(false);
   const [process, setProcess] = useState(false);
@@ -74,9 +74,7 @@ const QuizPage = ({welcome}) => {
   const [typeFirst, setTypeFirst] = useState(0);
   const [typeSecond, setTypeSecond] = useState(0);
   const [typeThird, setTypeThird] = useState(0);
-  const [typeFourth, setTypeFourth] = useState(0);
   const [finalType, setFinalType] = useState(0);
-  const [turn, setTurn] = useState(0);
 
   /**
    * questionNumber가 10번 전까지, 16번이 아닐 경우를 조건으로
@@ -91,48 +89,28 @@ const QuizPage = ({welcome}) => {
       contents[questionNumber].weight *
       contents[questionNumber].answers[key].score;
 
-    if (questionNumber === 3 && key === 2) {
-      setLoading(true);
-      let num = 16;
-      setFinalType(num);
-      setLinkTo(linkResult + num);
-      setTimeout(function () {
-        setLoading(false);
-      }, 3000);
-    } else if (questionNumber === 0 || questionNumber === 1) {
+    if (questionNumber === 0 || questionNumber === 1) {
       setTypeFirst(typeFirst + record);
-    } else if (
-      questionNumber === 2 ||
-      questionNumber === 3 ||
-      questionNumber === 4
-    ) {
+    } else if (questionNumber === 2 || questionNumber === 3) {
       setTypeSecond(typeSecond + record);
-    } else if (
-      questionNumber === 5 ||
-      questionNumber === 6 ||
-      questionNumber === 7
-    ) {
+    } else if (questionNumber >= 4) {
       setTypeThird(typeThird + record);
-    } else if (questionNumber >= 8) {
-      setTypeFourth(typeFourth + record);
 
-      if (questionNumber === 9) {
+      if (questionNumber === 5) {
         let result = 0;
 
         if (typeFirst >= 5) {
-          result = record + 8;
+          result = result + 4;
         }
         if (typeSecond >= 5) {
-          result = record + 4;
+          result = result + 2;
         }
-        if (typeThird >= 5) {
-          result = record + 2;
-        }
-        if (typeFourth + record >= 5) {
-          result = record + 1;
+        if (typeThird + record >= 5) {
+          result = result + 1;
         } else {
           result = result + 0;
         }
+
         let num = result;
         setFinalType(num);
         setLinkTo(linkResult + num);
@@ -141,18 +119,17 @@ const QuizPage = ({welcome}) => {
         setTimeout(function () {
           setLoading(false);
           setProcess(true);
-        }, 2000);
+        }, 2500);
       }
     }
     setQuestionNumber(questionNumber + 1);
-    setTurn(turn + 1);
   };
 
   const onClickResultBtn = () => {
     setProcess(false);
-    setQuestionNumber(16);
+    setQuestionNumber(7);
   };
-  if (questionNumber === 10) {
+  if (questionNumber === 6) {
     return (
       <>
         <Wrapper welcome={loading}>
@@ -160,8 +137,8 @@ const QuizPage = ({welcome}) => {
             Beer Dobby
             <IoBeerSharp />
           </Title>
-          <Msg>당신의 맥주 취향을 찾고 있어요!</Msg>
-          <Footer>made by heeChang</Footer>
+          <Msg>당신의 맥주 취향을 찾고 있어요! .. </Msg>
+          <Footer>도비는 곧 자유에요! 신나요!</Footer>
         </Wrapper>
         <Wrapper welcome={process}>
           <Container>
@@ -177,17 +154,18 @@ const QuizPage = ({welcome}) => {
         </Wrapper>
       </>
     );
-  } else if (finalType === 16) {
-    return (
-      <div>
-        <Navigate to={linkTo}></Navigate>
-      </div>
-    );
-  } else if (questionNumber < 10 && finalType !== 16) {
+  }else if (finalType === 7) {
+    return(
+        <div>
+            <NavLink to={linkTo}></NavLink>
+        </div>
+    )
+  }
+   else if (questionNumber < 6 && finalType !== 7) {
     return (
       <>
         <Wrapper welcome={welcome}>
-          <ProgressBar completed={(questionNumber + 1) * 24} rotation={turn} />
+          <ProgressBar completed={(questionNumber + 1) * 16.7} />
 
           <Container>
             <Text>{Parser(contents[questionNumber].question)}</Text>

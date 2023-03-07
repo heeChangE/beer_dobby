@@ -18,11 +18,7 @@ const Button = styled.div`
     border: none;
 `
 
-/**
- * 
- * @param StartingButtonComponent 
- * @returns 
- */
+/** StartingButtonComponent Component */
 const StartingButtonComponent = ({ idx, type, text, onclick}) => {
 
     const onClickBtn = () => {

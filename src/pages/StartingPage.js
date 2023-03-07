@@ -33,7 +33,7 @@ const Intro = styled.div`
 
 const Title = styled.div`
   font-family: "Jalnan";
-  font-size: 3.5rem;
+  font-size: 3.7rem;
   font-weight: 400;
   padding-top: 70px;
   margin-bottom: 7.5rem;
@@ -50,7 +50,7 @@ const Footer = styled.div`
   padding-bottom: 4rem;
 `;
 
-/** StartingPage Component */
+/** StartingPage Function */
 const StartingPage = () => {
   const [welcome, setWelcome] = useState(true);
   const [quizTime, setQuizTime] = useState(false);
