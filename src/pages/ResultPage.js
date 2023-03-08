@@ -43,7 +43,7 @@ const ResultTitle = styled.div`
 
 const ResultImg = styled.img`
   position: absolute;
-  width: 25rem;
+  width: 10rem;
 `;
 
 const Content = styled.div`
@@ -66,7 +66,7 @@ const ResultSquare = styled.div`
 
   ${ResultImg} {
     justify-content: center;
-    bottom: ${(props) => (props.isNormal < 8 ? "30.5rem" : "14rem")};
+    bottom: ${(props) => (props.isNormal < 8 ? "33.5rem" : "14rem")};
   }
 
   ${Content} {
@@ -140,7 +140,7 @@ const SmallTitle = styled.div`
 `;
 
 const MatchImg = styled.img`
-  width: 15.8rem;
+  width: 7.8rem;
 `
 
 const MatchSqaure = styled.div`
